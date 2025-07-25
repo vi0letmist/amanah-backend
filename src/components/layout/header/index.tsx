@@ -4,8 +4,10 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { LayoutGrid, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useSidebar } from "@/context/SidebarContext";
 
 const Header = () => {
+  const { isOpen } = useSidebar();
   const pathname = usePathname();
   const pathSegments = pathname.split("/").filter((segment) => segment);
 
@@ -16,8 +18,10 @@ const Header = () => {
       .join(" ");
   };
   return (
-    <header className="flex items-center justify-between px-4 py-3 bg-gray-800 text-white shadow-md">
-      <div className="flex items-center space-x-4">
+    <header className="fixed top-0 left-0 right-0 z-40 flex items-center justify-between px-4 py-3 bg-gray-800 text-white shadow-md h-16">
+      <div
+        className={`flex items-center space-x-4 ${isOpen ? "pl-64" : "pl-16"}`}
+      >
         <div className="flex items-center space-x-2">
           <div className="w-8 h-8 rounded-full flex items-center justify-center">
             <LayoutGrid className="w-5 h-5 text-white" />

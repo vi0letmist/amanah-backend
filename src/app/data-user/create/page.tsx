@@ -113,8 +113,8 @@ const DataUserCreate = () => {
       )}
 
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="flex gap-4">
-          <Card className="w-full my-6 flex-[7]">
+        <div className="flex flex-col md:flex-row gap-4">
+          <Card className="w-full mt-6 md:flex-[7]">
             <CardHeader className="border-b">
               <CardTitle>Profile</CardTitle>
             </CardHeader>
@@ -288,7 +288,7 @@ const DataUserCreate = () => {
             </CardContent>
           </Card>
 
-          <Card className="w-full my-6 flex-[1]">
+          <Card className="w-full md:mt-6 md:flex-[1]">
             <CardHeader className="border-b">
               <CardTitle>Action</CardTitle>
             </CardHeader>

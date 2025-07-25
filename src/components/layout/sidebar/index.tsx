@@ -4,21 +4,19 @@ import React, { useState } from "react";
 import Link from "next/link";
 import clsx from "clsx";
 import { ChevronLeft, LayoutGrid, Users } from "lucide-react";
+import { useSidebar } from "@/context/SidebarContext";
 
 const Sidebar = () => {
-  const [isOpen, setIsOpen] = useState(true);
+  const { isOpen, toggleSidebar } = useSidebar();
 
-  const toggleSidebar = () => {
-    setIsOpen(!isOpen);
-  };
   return (
     <aside
       className={clsx(
-        "relative flex flex-col bg-gray-900 text-gray-300 transition-all duration-300 ease-in-out",
+        "fixed top-0 left-0 h-screen pt-16 z-50 flex flex-col bg-gray-900 text-gray-300 transition-all duration-300 ease-in-out",
         isOpen ? "w-64" : "w-20"
       )}
     >
-      <div className="flex items-center justify-center p-4 bg-gray-800  max-h-[60px]">
+      <div className="absolute top-0 left-0 right-0 flex items-center justify-center h-[60px] bg-gray-800 z-50">
         {isOpen ? (
           <h2 className="text-xl font-bold text-white whitespace-nowrap">
             Amanah Backend
