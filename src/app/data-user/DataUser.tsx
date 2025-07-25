@@ -73,66 +73,68 @@ const DataUser = () => {
             <CardTitle>List User</CardTitle>
           </CardHeader>
           <CardContent>
-            <Table className="min-w-full border border-gray-200 rounded-lg">
-              <TableHeader>
-                <TableRow className="bg-gray-50 text-left text-sm font-medium text-gray-600 uppercase tracking-wider">
-                  <TableHead className="py-3 px-4 border-b border-gray-200">
-                    No
-                  </TableHead>
-                  <TableHead className="py-3 px-4 border-b border-gray-200">
-                    Name
-                  </TableHead>
-                  <TableHead className="py-3 px-4 border-b border-gray-200">
-                    Email
-                  </TableHead>
-                  <TableHead className="py-3 px-4 border-b border-gray-200">
-                    Username
-                  </TableHead>
-                  <TableHead className="py-3 px-4 border-b border-gray-200">
-                    Phone
-                  </TableHead>
-                  <TableHead className="py-3 px-4 border-b border-gray-200 text-center">
-                    Action
-                  </TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {userList?.map((user) => (
-                  <TableRow
-                    key={user.id}
-                    className="hover:bg-gray-50 transition-colors"
-                  >
-                    <TableCell className="py-3 px-4 whitespace-nowrap">
-                      {user.id}
-                    </TableCell>
-                    <TableCell className="py-3 px-4 whitespace-nowrap">
-                      {user.name}
-                    </TableCell>
-                    <TableCell className="py-3 px-4 whitespace-nowrap">
-                      {user.email}
-                    </TableCell>
-                    <TableCell className="py-3 px-4 whitespace-nowrap">
-                      {user.username}
-                    </TableCell>
-                    <TableCell className="py-3 px-4 whitespace-nowrap">
-                      {user.phone}
-                    </TableCell>
-                    <TableCell className="py-3 px-4 whitespace-nowrap text-center">
-                      <Button
-                        variant="ghost"
-                        size="icon"
-                        className="text-gray-600 hover:text-blue-500"
-                        onClick={() =>
-                          router.push(`/data-user/edit/${user.id}`)
-                        }
-                      >
-                        <Pencil className="w-4 h-4" />
-                      </Button>
-                    </TableCell>
+            <div className="w-full overflow-x-auto">
+              <Table className="min-w-full border border-gray-200 rounded-lg">
+                <TableHeader>
+                  <TableRow className="bg-gray-50 text-left text-sm font-medium text-gray-600 uppercase tracking-wider">
+                    <TableHead className="py-3 px-4 border-b border-gray-200">
+                      No
+                    </TableHead>
+                    <TableHead className="py-3 px-4 border-b border-gray-200">
+                      Name
+                    </TableHead>
+                    <TableHead className="py-3 px-4 border-b border-gray-200">
+                      Email
+                    </TableHead>
+                    <TableHead className="py-3 px-4 border-b border-gray-200">
+                      Username
+                    </TableHead>
+                    <TableHead className="py-3 px-4 border-b border-gray-200">
+                      Phone
+                    </TableHead>
+                    <TableHead className="py-3 px-4 border-b border-gray-200 text-center">
+                      Action
+                    </TableHead>
                   </TableRow>
-                ))}
-              </TableBody>
-            </Table>
+                </TableHeader>
+                <TableBody>
+                  {userList?.map((user) => (
+                    <TableRow
+                      key={user.id}
+                      className="hover:bg-gray-50 transition-colors"
+                    >
+                      <TableCell className="py-3 px-4 whitespace-nowrap">
+                        {user.id}
+                      </TableCell>
+                      <TableCell className="py-3 px-4 whitespace-nowrap">
+                        {user.name}
+                      </TableCell>
+                      <TableCell className="py-3 px-4 whitespace-nowrap">
+                        {user.email}
+                      </TableCell>
+                      <TableCell className="py-3 px-4 whitespace-nowrap">
+                        {user.username}
+                      </TableCell>
+                      <TableCell className="py-3 px-4 whitespace-nowrap">
+                        {user.phone}
+                      </TableCell>
+                      <TableCell className="py-3 px-4 whitespace-nowrap text-center">
+                        <Button
+                          variant="ghost"
+                          size="icon"
+                          className="text-gray-600 hover:text-blue-500"
+                          onClick={() =>
+                            router.push(`/data-user/edit/${user.id}`)
+                          }
+                        >
+                          <Pencil className="w-4 h-4" />
+                        </Button>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </div>
           </CardContent>
         </Card>
       </div>

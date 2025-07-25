@@ -769,135 +769,153 @@ const Contract = forwardRef<ContractCardRef, ContractProps>(
                       </CardAction>
                     </CardHeader>
                     <CardContent>
-                      <Table className="min-w-full border border-gray-200 rounded-lg">
-                        <TableHeader>
-                          <TableRow className="bg-gray-50 text-left text-sm font-medium text-gray-600 tracking-wider">
-                            <TableHead className="py-3 px-4 border-b border-gray-200">
-                              Nama
-                            </TableHead>
-                            <TableHead className="py-3 px-4 border-b border-gray-200">
-                              Tipe
-                            </TableHead>
-                            <TableHead className="py-3 px-4 border-b border-gray-200">
-                              Nominal
-                            </TableHead>
-                            <TableHead className="py-3 px-4 border-b border-gray-200" />
-                          </TableRow>
-                        </TableHeader>
-                        <TableBody>
-                          {kontrak.pendapatans?.map((item, pendapatanIndex) => (
-                            <TableRow
-                              key={pendapatanIndex}
-                              className="hover:bg-gray-50 transition-colors"
-                            >
-                              <TableCell className="py-3 px-4 whitespace-nowrap">
-                                <Select
-                                  value={String(item.nama_pendapatan)}
-                                  onValueChange={(val) =>
-                                    handlePendapatanChange(
-                                      index,
-                                      pendapatanIndex,
-                                      "nama_pendapatan",
-                                      Number(val)
-                                    )
-                                  }
-                                >
-                                  <SelectTrigger className="w-full">
-                                    <SelectValue placeholder="Pilih Nama Pendapatan" />
-                                  </SelectTrigger>
-                                  <SelectContent>
-                                    <SelectGroup>
-                                      <SelectLabel>Nama Pendapatan</SelectLabel>
-                                      <SelectItem value="1">
-                                        Gaji Pokok
-                                      </SelectItem>
-                                      <SelectItem value="2">
-                                        Investasi
-                                      </SelectItem>
-                                      <SelectItem value="3">Warisan</SelectItem>
-                                    </SelectGroup>
-                                  </SelectContent>
-                                </Select>
-                              </TableCell>
-
-                              <TableCell className="py-3 px-4 whitespace-nowrap">
-                                <Select
-                                  value={String(item.tipe_pendapatan)}
-                                  onValueChange={(val) =>
-                                    handlePendapatanChange(
-                                      index,
-                                      pendapatanIndex,
-                                      "tipe_pendapatan",
-                                      Number(val)
-                                    )
-                                  }
-                                >
-                                  <SelectTrigger className="w-full">
-                                    <SelectValue placeholder="Pilih Tipe Pendapatan" />
-                                  </SelectTrigger>
-                                  <SelectContent>
-                                    <SelectGroup>
-                                      <SelectLabel>Tipe Pendapatan</SelectLabel>
-                                      <SelectItem value="1">Tipe A</SelectItem>
-                                      <SelectItem value="2">Tipe B</SelectItem>
-                                      <SelectItem value="3">Tipe C</SelectItem>
-                                      <SelectItem value="4">Tipe D</SelectItem>
-                                    </SelectGroup>
-                                  </SelectContent>
-                                </Select>
-                              </TableCell>
-
-                              <TableCell className="py-3 px-4 whitespace-nowrap">
-                                <Input
-                                  type="number"
-                                  placeholder="Nominal"
-                                  value={item.nominal}
-                                  onChange={(e) =>
-                                    handlePendapatanChange(
-                                      index,
-                                      pendapatanIndex,
-                                      "nominal",
-                                      Number(e.target.value)
-                                    )
-                                  }
-                                />
-                              </TableCell>
-
-                              <TableCell className="py-3 px-4 whitespace-nowrap text-center">
-                                <Button
-                                  variant="ghost"
-                                  size="icon"
-                                  className="border border-red-600"
-                                  onClick={() =>
-                                    removePendapatan(index, pendapatanIndex)
-                                  }
-                                >
-                                  <Trash className="w-4 h-4 text-red-600" />
-                                </Button>
-                              </TableCell>
+                      <div className="w-full overflow-x-auto">
+                        <Table className="min-w-full border border-gray-200 rounded-lg">
+                          <TableHeader>
+                            <TableRow className="bg-gray-50 text-left text-sm font-medium text-gray-600 tracking-wider">
+                              <TableHead className="py-3 px-4 border-b border-gray-200">
+                                Nama
+                              </TableHead>
+                              <TableHead className="py-3 px-4 border-b border-gray-200">
+                                Tipe
+                              </TableHead>
+                              <TableHead className="py-3 px-4 border-b border-gray-200">
+                                Nominal
+                              </TableHead>
+                              <TableHead className="py-3 px-4 border-b border-gray-200" />
                             </TableRow>
-                          ))}
-                        </TableBody>
-                        <TableFooter>
-                          <TableRow className="bg-gray-50 text-left text-sm font-medium text-gray-600 tracking-wider">
-                            <TableHead
-                              colSpan={2}
-                              className="py-3 px-4 border-b border-gray-200"
-                            >
-                              Total Pendapatan Kotor
-                            </TableHead>
-                            <TableHead className="py-3 px-4 border-b border-gray-200">
-                              {formatRupiah(
-                                (kontrak?.pendapatans || []).reduce(
-                                  (sum, item) => sum + (item.nominal || 0),
-                                  0
-                                )
-                              )}
-                            </TableHead>
-                            <TableHead className="py-3 px-4 border-b border-gray-200" />
-                          </TableRow>
-                        </TableFooter>
-                      </Table>
+                          </TableHeader>
+                          <TableBody>
+                            {kontrak.pendapatans?.map(
+                              (item, pendapatanIndex) => (
+                                <TableRow
+                                  key={pendapatanIndex}
+                                  className="hover:bg-gray-50 transition-colors"
+                                >
+                                  <TableCell className="py-3 px-4 whitespace-nowrap">
+                                    <Select
+                                      value={String(item.nama_pendapatan)}
+                                      onValueChange={(val) =>
+                                        handlePendapatanChange(
+                                          index,
+                                          pendapatanIndex,
+                                          "nama_pendapatan",
+                                          Number(val)
+                                        )
+                                      }
+                                    >
+                                      <SelectTrigger className="w-full">
+                                        <SelectValue placeholder="Pilih Nama Pendapatan" />
+                                      </SelectTrigger>
+                                      <SelectContent>
+                                        <SelectGroup>
+                                          <SelectLabel>
+                                            Nama Pendapatan
+                                          </SelectLabel>
+                                          <SelectItem value="1">
+                                            Gaji Pokok
+                                          </SelectItem>
+                                          <SelectItem value="2">
+                                            Investasi
+                                          </SelectItem>
+                                          <SelectItem value="3">
+                                            Warisan
+                                          </SelectItem>
+                                        </SelectGroup>
+                                      </SelectContent>
+                                    </Select>
+                                  </TableCell>
+
+                                  <TableCell className="py-3 px-4 whitespace-nowrap">
+                                    <Select
+                                      value={String(item.tipe_pendapatan)}
+                                      onValueChange={(val) =>
+                                        handlePendapatanChange(
+                                          index,
+                                          pendapatanIndex,
+                                          "tipe_pendapatan",
+                                          Number(val)
+                                        )
+                                      }
+                                    >
+                                      <SelectTrigger className="w-full">
+                                        <SelectValue placeholder="Pilih Tipe Pendapatan" />
+                                      </SelectTrigger>
+                                      <SelectContent>
+                                        <SelectGroup>
+                                          <SelectLabel>
+                                            Tipe Pendapatan
+                                          </SelectLabel>
+                                          <SelectItem value="1">
+                                            Tipe A
+                                          </SelectItem>
+                                          <SelectItem value="2">
+                                            Tipe B
+                                          </SelectItem>
+                                          <SelectItem value="3">
+                                            Tipe C
+                                          </SelectItem>
+                                          <SelectItem value="4">
+                                            Tipe D
+                                          </SelectItem>
+                                        </SelectGroup>
+                                      </SelectContent>
+                                    </Select>
+                                  </TableCell>
+
+                                  <TableCell className="py-3 px-4 whitespace-nowrap">
+                                    <Input
+                                      type="number"
+                                      placeholder="Nominal"
+                                      value={item.nominal}
+                                      onChange={(e) =>
+                                        handlePendapatanChange(
+                                          index,
+                                          pendapatanIndex,
+                                          "nominal",
+                                          Number(e.target.value)
+                                        )
+                                      }
+                                    />
+                                  </TableCell>
+
+                                  <TableCell className="py-3 px-4 whitespace-nowrap text-center">
+                                    <Button
+                                      variant="ghost"
+                                      size="icon"
+                                      className="border border-red-600"
+                                      onClick={() =>
+                                        removePendapatan(index, pendapatanIndex)
+                                      }
+                                    >
+                                      <Trash className="w-4 h-4 text-red-600" />
+                                    </Button>
+                                  </TableCell>
+                                </TableRow>
+                              )
+                            )}
+                          </TableBody>
+                          <TableFooter>
+                            <TableRow className="bg-gray-50 text-left text-sm font-medium text-gray-600 tracking-wider">
+                              <TableHead
+                                colSpan={2}
+                                className="py-3 px-4 border-b border-gray-200"
+                              >
+                                Total Pendapatan Kotor
+                              </TableHead>
+                              <TableHead className="py-3 px-4 border-b border-gray-200">
+                                {formatRupiah(
+                                  (kontrak?.pendapatans || []).reduce(
+                                    (sum, item) => sum + (item.nominal || 0),
+                                    0
+                                  )
+                                )}
+                              </TableHead>
+                              <TableHead className="py-3 px-4 border-b border-gray-200" />
+                            </TableRow>
+                          </TableFooter>
+                        </Table>
+                      </div>
                     </CardContent>
                   </Card>
 
@@ -916,133 +934,145 @@ const Contract = forwardRef<ContractCardRef, ContractProps>(
                       </CardAction>
                     </CardHeader>
                     <CardContent>
-                      <Table className="min-w-full border border-gray-200 rounded-lg">
-                        <TableHeader>
-                          <TableRow className="bg-gray-50 text-left text-sm font-medium text-gray-600 tracking-wider">
-                            <TableHead className="py-3 px-4 border-b border-gray-200">
-                              Nama
-                            </TableHead>
-                            <TableHead className="py-3 px-4 border-b border-gray-200">
-                              Tipe
-                            </TableHead>
-                            <TableHead className="py-3 px-4 border-b border-gray-200">
-                              Nominal
-                            </TableHead>
-                            <TableHead className="py-3 px-4 border-b border-gray-200" />
-                          </TableRow>
-                        </TableHeader>
-                        <TableBody>
-                          {kontrak.potongans?.map((item, potonganIndex) => (
-                            <TableRow
-                              key={potonganIndex}
-                              className="hover:bg-gray-50 transition-colors"
-                            >
-                              <TableCell className="py-3 px-4 whitespace-nowrap">
-                                <Select
-                                  value={String(item.nama_potongan)}
-                                  onValueChange={(val) =>
-                                    handlePotonganChange(
-                                      index,
-                                      potonganIndex,
-                                      "nama_potongan",
-                                      Number(val)
-                                    )
-                                  }
-                                >
-                                  <SelectTrigger className="w-full">
-                                    <SelectValue placeholder="Pilih Nama Potongan" />
-                                  </SelectTrigger>
-                                  <SelectContent>
-                                    <SelectGroup>
-                                      <SelectLabel>Nama Potongan</SelectLabel>
-                                      <SelectItem value="1">BPJS TK</SelectItem>
-                                      <SelectItem value="2">
-                                        BPJS Kesehatan
-                                      </SelectItem>
-                                      <SelectItem value="3">Meal</SelectItem>
-                                    </SelectGroup>
-                                  </SelectContent>
-                                </Select>
-                              </TableCell>
-
-                              <TableCell className="py-3 px-4 whitespace-nowrap">
-                                <Select
-                                  value={String(item.tipe_potongan)}
-                                  onValueChange={(val) =>
-                                    handlePotonganChange(
-                                      index,
-                                      potonganIndex,
-                                      "tipe_potongan",
-                                      Number(val)
-                                    )
-                                  }
-                                >
-                                  <SelectTrigger className="w-full">
-                                    <SelectValue placeholder="Pilih Tipe Potongan" />
-                                  </SelectTrigger>
-                                  <SelectContent>
-                                    <SelectGroup>
-                                      <SelectLabel>Tipe Potongan</SelectLabel>
-                                      <SelectItem value="1">Tipe A</SelectItem>
-                                      <SelectItem value="2">Tipe B</SelectItem>
-                                      <SelectItem value="3">Tipe C</SelectItem>
-                                      <SelectItem value="4">Tipe D</SelectItem>
-                                    </SelectGroup>
-                                  </SelectContent>
-                                </Select>
-                              </TableCell>
-
-                              <TableCell className="py-3 px-4 whitespace-nowrap">
-                                <Input
-                                  type="number"
-                                  placeholder="Nominal"
-                                  value={item.nominal}
-                                  onChange={(e) =>
-                                    handlePotonganChange(
-                                      index,
-                                      potonganIndex,
-                                      "nominal",
-                                      Number(e.target.value)
-                                    )
-                                  }
-                                />
-                              </TableCell>
-
-                              <TableCell className="py-3 px-4 whitespace-nowrap text-center">
-                                <Button
-                                  variant="ghost"
-                                  size="icon"
-                                  className="border border-red-600"
-                                  onClick={() =>
-                                    removePotongan(index, potonganIndex)
-                                  }
-                                >
-                                  <Trash className="w-4 h-4 text-red-600" />
-                                </Button>
-                              </TableCell>
+                      <div className="w-full overflow-x-auto">
+                        <Table className="min-w-full border border-gray-200 rounded-lg">
+                          <TableHeader>
+                            <TableRow className="bg-gray-50 text-left text-sm font-medium text-gray-600 tracking-wider">
+                              <TableHead className="py-3 px-4 border-b border-gray-200">
+                                Nama
+                              </TableHead>
+                              <TableHead className="py-3 px-4 border-b border-gray-200">
+                                Tipe
+                              </TableHead>
+                              <TableHead className="py-3 px-4 border-b border-gray-200">
+                                Nominal
+                              </TableHead>
+                              <TableHead className="py-3 px-4 border-b border-gray-200" />
                             </TableRow>
-                          ))}
-                        </TableBody>
-                        <TableFooter>
-                          <TableRow className="bg-gray-50 text-left text-sm font-medium text-gray-600 tracking-wider">
-                            <TableHead
-                              colSpan={2}
-                              className="py-3 px-4 border-b border-gray-200"
-                            >
-                              Total Pengurangan
-                            </TableHead>
-                            <TableHead className="py-3 px-4 border-b border-gray-200">
-                              {formatRupiah(
-                                (kontrak?.potongans || []).reduce(
-                                  (sum, item) => sum + (item.nominal || 0),
-                                  0
-                                )
-                              )}
-                            </TableHead>
-                            <TableHead className="py-3 px-4 border-b border-gray-200" />
-                          </TableRow>
-                        </TableFooter>
-                      </Table>
+                          </TableHeader>
+                          <TableBody>
+                            {kontrak.potongans?.map((item, potonganIndex) => (
+                              <TableRow
+                                key={potonganIndex}
+                                className="hover:bg-gray-50 transition-colors"
+                              >
+                                <TableCell className="py-3 px-4 whitespace-nowrap">
+                                  <Select
+                                    value={String(item.nama_potongan)}
+                                    onValueChange={(val) =>
+                                      handlePotonganChange(
+                                        index,
+                                        potonganIndex,
+                                        "nama_potongan",
+                                        Number(val)
+                                      )
+                                    }
+                                  >
+                                    <SelectTrigger className="w-full">
+                                      <SelectValue placeholder="Pilih Nama Potongan" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                      <SelectGroup>
+                                        <SelectLabel>Nama Potongan</SelectLabel>
+                                        <SelectItem value="1">
+                                          BPJS TK
+                                        </SelectItem>
+                                        <SelectItem value="2">
+                                          BPJS Kesehatan
+                                        </SelectItem>
+                                        <SelectItem value="3">Meal</SelectItem>
+                                      </SelectGroup>
+                                    </SelectContent>
+                                  </Select>
+                                </TableCell>
+
+                                <TableCell className="py-3 px-4 whitespace-nowrap">
+                                  <Select
+                                    value={String(item.tipe_potongan)}
+                                    onValueChange={(val) =>
+                                      handlePotonganChange(
+                                        index,
+                                        potonganIndex,
+                                        "tipe_potongan",
+                                        Number(val)
+                                      )
+                                    }
+                                  >
+                                    <SelectTrigger className="w-full">
+                                      <SelectValue placeholder="Pilih Tipe Potongan" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                      <SelectGroup>
+                                        <SelectLabel>Tipe Potongan</SelectLabel>
+                                        <SelectItem value="1">
+                                          Tipe A
+                                        </SelectItem>
+                                        <SelectItem value="2">
+                                          Tipe B
+                                        </SelectItem>
+                                        <SelectItem value="3">
+                                          Tipe C
+                                        </SelectItem>
+                                        <SelectItem value="4">
+                                          Tipe D
+                                        </SelectItem>
+                                      </SelectGroup>
+                                    </SelectContent>
+                                  </Select>
+                                </TableCell>
+
+                                <TableCell className="py-3 px-4 whitespace-nowrap">
+                                  <Input
+                                    type="number"
+                                    placeholder="Nominal"
+                                    value={item.nominal}
+                                    onChange={(e) =>
+                                      handlePotonganChange(
+                                        index,
+                                        potonganIndex,
+                                        "nominal",
+                                        Number(e.target.value)
+                                      )
+                                    }
+                                  />
+                                </TableCell>
+
+                                <TableCell className="py-3 px-4 whitespace-nowrap text-center">
+                                  <Button
+                                    variant="ghost"
+                                    size="icon"
+                                    className="border border-red-600"
+                                    onClick={() =>
+                                      removePotongan(index, potonganIndex)
+                                    }
+                                  >
+                                    <Trash className="w-4 h-4 text-red-600" />
+                                  </Button>
+                                </TableCell>
+                              </TableRow>
+                            ))}
+                          </TableBody>
+                          <TableFooter>
+                            <TableRow className="bg-gray-50 text-left text-sm font-medium text-gray-600 tracking-wider">
+                              <TableHead
+                                colSpan={2}
+                                className="py-3 px-4 border-b border-gray-200"
+                              >
+                                Total Pengurangan
+                              </TableHead>
+                              <TableHead className="py-3 px-4 border-b border-gray-200">
+                                {formatRupiah(
+                                  (kontrak?.potongans || []).reduce(
+                                    (sum, item) => sum + (item.nominal || 0),
+                                    0
+                                  )
+                                )}
+                              </TableHead>
+                              <TableHead className="py-3 px-4 border-b border-gray-200" />
+                            </TableRow>
+                          </TableFooter>
+                        </Table>
+                      </div>
                     </CardContent>
                   </Card>
 
