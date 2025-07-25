@@ -26,7 +26,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             isOpen ? "pl-64" : "pl-16"
           }`}
         >
-          <main className="flex-1 overflow-x-hidden overflow-y-auto bg-gray-100 py-4 px-8 md:py-8 md:px-16 pl-64">
+          <main className="flex-1 overflow-x-hidden overflow-y-auto bg-gray-100 py-4 px-8 md:py-8 md:px-16">
             {children}
           </main>
         </div>
